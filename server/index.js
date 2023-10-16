@@ -8,7 +8,7 @@ app.use(express.json())
 
 app.use(express.urlencoded({extended: true})) // for parsing application/x-www-form-urlencoded
 
-app.use("/user", router.userRoutes)
+app.use("/users", router.userRoutes)
 
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`)
