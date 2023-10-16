@@ -1,6 +1,7 @@
 [
     {
-        "id": "ardia",
-        "password": 1234
+        "username": "ardia",
+        "email": "ardia@mail.com",
+        "password": "1234"
     }
 ]
