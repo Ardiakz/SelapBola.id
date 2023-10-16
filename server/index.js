@@ -10,6 +10,8 @@ app.use(express.urlencoded({extended: true})) // for parsing application/x-www-f
 
 app.use("/users", router.userRoutes)
 
+app.use("/products", router.productRoutes)
+
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`)
 })
