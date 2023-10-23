@@ -7,7 +7,18 @@ const userController = {
     register: async(req, res) => {
         try {
         const {username, email, password} = req.body
+
+        if (!username || !email || !password) {
+            return res.status(400).json({message: 'All fields are required'})
+        }
+
         const usersData = loadUsers()
+
+        const userExists = usersData.some((user) => user.username === username || user.email === email)
+
+        if (userExists) {
+            return res.status(409).json({message: 'User already exist'})
+        }
 
         const newUser = {
             username, email, password
