@@ -1,4 +1,4 @@
-const Product = require('../migrations/20231027090611_products')
+const Product = require('path')
 
 const productController = {
     getAll : async (req, res) => {
