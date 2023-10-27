@@ -1,7 +1,7 @@
 const fs = require('fs')
 const bcrypt = require('bcrypt')
 const path = require('path')
-const dbPath = path.join(__dirname, '../db/users.json')
+const dbPath = path.join(__dirname, '../migrations/20231027090413_user.js')
 
 const userController = {
     register: async(req, res) => {
