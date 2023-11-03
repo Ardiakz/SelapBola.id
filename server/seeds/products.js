@@ -4,10 +4,12 @@
  */
 exports.seed = async function(knex) {
   // Deletes ALL existing entries
-  await knex('table_name').del()
-  await knex('table_name').insert([
-    {id: 1, colName: 'rowValue1'},
-    {id: 2, colName: 'rowValue2'},
-    {id: 3, colName: 'rowValue3'}
+  await knex('products').del()
+  await knex('products').insert([
+    {
+      product_name: 'HK99',
+      address: 'GG Jragem RT02/RW38, Nandan, Sariharjo, Ngaglik, Sleman, Daerah Istimewa Yogyakarta 55581',
+      product_img: ''
+    }
   ]);
 };

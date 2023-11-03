@@ -4,7 +4,9 @@
   "description": "Gold Challenge for Binar Academy",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "migrate": "npx knex migrate:latest --knexfile knexfile.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon"
   },
   "keywords": [],
   "author": "Ardia",
@@ -15,7 +17,6 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "knex": "^3.0.1",
-    "pg": "^8.11.3",
-    "sequelize": "^6.33.0"
+    "pg": "^8.11.3"
   }
 }

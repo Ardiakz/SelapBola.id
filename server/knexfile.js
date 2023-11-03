@@ -13,6 +13,9 @@ module.exports = {
       user : db_user,
       password : db_password,
       database : db_database
+    },
+    seeds: {
+      directory: './seeds'
     }
   },
 

@@ -1,10 +1,10 @@
 const express = require("express")
 const knex = require("knex")
-const userController = require("./controllers/userController")
 const PORT = 3000
 const app = express()
 const router = require("./routes")
 const knexfile = require("./knexfile")
+const userController = require("./controllers/userController")
 const db = knex(knexfile.development)
 
 app.use(express.json())
@@ -19,4 +19,4 @@ app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`)
 })
 
-module.export = userController
+module.export = {userController, db} 
