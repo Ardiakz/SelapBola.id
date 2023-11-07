@@ -5,11 +5,10 @@
 exports.up = function(knex) {
   return knex.schema.createTable('rent', (table) => {
     table.increments('id').primary()
-    // table.string('name').notNullable()
-    table.decimal('rent_price').notNullable()
-    table.string('date')
-    table.boolean('status').defaultTo(true)
-    // table.string('product_img')
+    table.integer('product_id').unsigned()
+    table.foreign('product_id').references('products.id')
+    table.decimal('price').notNullable()
+    table.integer('discount').defaultTo(0)
   })
 };
 

@@ -15,6 +15,8 @@ app.use("/users", router.userRoutes)
 
 app.use("/products", router.productRoutes)
 
+app.use("/order", router.orderRoutes)
+
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`)
 })

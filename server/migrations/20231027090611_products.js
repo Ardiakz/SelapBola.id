@@ -8,6 +8,7 @@ exports.up = function(knex) {
     table.string('product_name').notNullable()
     table.string('address')
     table.string('product_img')
+    table.boolean('available').defaultTo(true)
   })
 };
 
