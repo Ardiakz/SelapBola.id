@@ -48,8 +48,8 @@ const userController = {
         } catch (error) {
             return res.status(500).json({message: 'Login failed'})
         }
-    }
-}
+    
+    }}
 
 async function loadUsers() {
     try {
