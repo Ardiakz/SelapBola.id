@@ -9,9 +9,7 @@ exports.seed = async function(knex) {
   await knex('rent').del()
   await knex('rent').insert([
     {
-      rent_price: 10,
-      date: now,
-      status: true
+      
     }
 
   ]);

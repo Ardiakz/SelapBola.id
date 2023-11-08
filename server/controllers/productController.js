@@ -1,4 +1,4 @@
-const knex = require('path')
+const knex = require('../knexfile')
 
 const productController = {
     getAll : async (req, res) => {

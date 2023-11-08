@@ -9,6 +9,7 @@ exports.up = function(knex) {
     table.foreign('product_id').references('products.id')
     table.decimal('price').notNullable()
     table.integer('discount').defaultTo(0)
+    table.date('date').notNullable()
   })
 };
 

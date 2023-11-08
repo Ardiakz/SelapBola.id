@@ -9,7 +9,8 @@ exports.seed = async function(knex) {
     {
       product_name: 'HK99',
       address: 'GG Jragem RT02/RW38, Nandan, Sariharjo, Ngaglik, Sleman, Daerah Istimewa Yogyakarta 55581',
-      product_img: ''
+      product_img: 'https://picsum.photos/200/300',
+      available: true
     }
   ]);
 };

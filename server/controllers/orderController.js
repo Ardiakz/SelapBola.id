@@ -1,8 +1,8 @@
 const knex = require('../knexfile')
 
 const orderController = {
-    createSession: async (req, res) => {
-        const {productId, sessionDate} = req.body
+    rentSession: async (req, res) => {
+        const {productId, selectedDate} = req.body
 
         try {
             const product = await knex('products')
@@ -14,7 +14,7 @@ const orderController = {
             }
 
             const existingSession = await knex('rent')
-            .where({product_id :productId, sessionDate: sessionDate})
+            .where({product_id :productId, session_date: selectedDate})
             .first()
 
             if (existingSession) {
@@ -23,17 +23,38 @@ const orderController = {
 
             const totalPrice = product.price
 
-            const newSession = await knex('rent').insert({
-                product_id: productId,
-                session_date: sessionDate,
-                total_price: totalPrice,
-            })
+            const trx = await knex.transaction()
 
-            return res.status(201).json({message: 'Book successfull', sessionId: newSession[0]})
+            try {
+                const newSession = await knex('rent').insert({
+                    product_id: productId,
+                    session_date: selectedDate,
+                    total_price: totalPrice,
+                })
+
+                const paymentResult = await simulatePayment(totalPrice)
+
+                if (paymentResult --- 'success'){
+                    await trx.commit()
+
+                    return res.status(201).json({message: 'Book successful', sessionId: newSession[0]})
+                } else {
+                    await trx.rollback()
+                    return res.status(500).json({message: 'Payment failed, please try again'})
+                }
+            } catch (error) {
+                return res.status(500).json({message: 'An error occured'})
+            }
+
         } catch (error) {
             return res.status(500).json({message: 'An error occured'})
         }
     },
+}
+
+// Simulasi pembayaran (untuk demo)
+const simulatePayment = async (amount) => {
+    return 'success'
 }
 
 module.exports = orderController
