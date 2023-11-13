@@ -6,9 +6,8 @@ const dbPath = path.join(__dirname, 'path')
 const productController = {
     getAll: async (req, res) => {
         try {
-        const products = await knex('products').select('*')
-            // console.log(products)
-        return res.status(200).json(products)
+        const allData = await knex.selectAll('products', "*")
+        return res.status(200).json(allData)
         } catch (error) {
         return res.status(500).json({message: 'An error occured while fetching products'})
         }

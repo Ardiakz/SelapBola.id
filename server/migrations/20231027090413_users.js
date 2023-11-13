@@ -10,8 +10,8 @@ exports.up = function(knex) {
     table.string('email').notNullable().unique()
     table.string('full_name').notNullable()
     table.string('phone_num')
-    table.timestamp('created_at')
-    table.timestamp('updated_at')
+    table.string('created_at').defaultTo(knex.fn.now())
+    table.string('updated_at').defaultTo(knex.fn.now())
   });
 };
 

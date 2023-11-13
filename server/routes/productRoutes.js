@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express.Router()
-const productController = require("../controllers").productController
+const productController = require("../controllers/productController")
 
-router.get('/lapangan', productController.getAll)
+router.get('/viewall', productController.getAll)
 
 // Ini harusnya buat role admin (?)
 router.post('/lapangan/add', productController.createProduct)
