@@ -33,7 +33,7 @@ const userController = {
         
         return res.redirect("/users/login")
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             return res.status(500).json({message: 'Register failed'})
         }
     },
