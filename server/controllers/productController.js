@@ -40,6 +40,7 @@ const productController = {
             return res.status(500).json({message: 'An error occured while edit products'})
          }
         },
+        
     deleteProduct: async (req, res) => {
         const {id} = req.params
         try {

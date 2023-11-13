@@ -31,7 +31,7 @@ const userController = {
 
         await saveUsers(inputUsers)
         
-        return res.redirect("/")
+        return res.redirect("/users/login")
         } catch (error) {
             console.log(error)
             return res.status(500).json({message: 'Register failed'})
@@ -59,6 +59,9 @@ const userController = {
     },
     registerView : async (req, res) => {
         res.render('register')
+    },
+    loginView : async (req, res) => {
+        res.render('login')
     }
 }
 
