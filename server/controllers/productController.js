@@ -1,17 +1,20 @@
-const knex = require('../knexfile')
+const path = require('path')
+// const knex = require('../knexfile')
+const knex = require('../models/db')
+const dbPath = path.join(__dirname, 'path')
 
 const productController = {
-    getAll : async (req, res) => {
+    getAll: async (req, res) => {
         try {
         const products = await knex('products').select('*')
-
+            // console.log(products)
         return res.status(200).json(products)
         } catch (error) {
         return res.status(500).json({message: 'An error occured while fetching products'})
         }
     },
 
-    createProduct : async (req, res) => {
+    createProduct: async (req, res) => {
         const {name, rent, date, status} = req.body
         try {
          const products = await knex('products').insert({
@@ -24,7 +27,7 @@ const productController = {
          }
         },
 
-    editProduct : async (req, res) => {
+    editProduct: async (req, res) => {
         const {id} = req.params
         const {name, rent, date, status} = req.body
         try {
@@ -38,7 +41,7 @@ const productController = {
             return res.status(500).json({message: 'An error occured while edit products'})
          }
         },
-    deleteProduct : async (req, res) => {
+    deleteProduct: async (req, res) => {
         const {id} = req.params
         try {
             const deletedProduct = await knex('products')

@@ -7,24 +7,24 @@ const dbPath = path.join(__dirname, 'path')
 const userController = {
     register: async(req, res) => {
         try {
-        const {username, email, password} = req.body
-
+        const {username, email, password, full_name, phone_num} = req.body
+            
         if (!username || !email || !password) {
             return res.status(400).json({message: 'All fields are required'})
         }
 
         const usersData = await loadUsers()
-
+        
         const userExists = usersData.some((user) => user.username === username || user.email === email)
-
+        
         if (userExists) {
             return res.status(409).json({message: 'User already exist'})
         }
-
+        
         const newUser = {
-            username, email, password
+            username, email, password, full_name, phone_num
         }
-
+        // console.log("testing")
         usersData.push(newUser)
         await saveUsers(usersData)
         return res.status(201).json({message: 'User registerd successfully'});
@@ -40,7 +40,7 @@ const userController = {
             const usersData = await loadUsers()
             // console.log(usersData, "testing")
             const user = usersData.find((user) => user.username === username && user.password === password)
-            console.log(user)
+            // console.log(user)
             if(user) {
                 return res.status(200).json({message: 'Logged in'})
             } else {
@@ -60,18 +60,18 @@ async function loadUsers() {
         // console.log(data, "iki data") 
         return data
     } catch (error) {
-        console.log(error, "masih error 67")
+        // console.log(error, "masih error 67")
         return [];
     }
 }
 
 async function saveUsers(usersData) {
     try {
-        await knex('users').truncate()
+         await knex('users').truncate()
         await knex('users').insert(usersData)
     } catch (error) {
         throw error
-    }
+     }
 }
 
 module.exports = userController

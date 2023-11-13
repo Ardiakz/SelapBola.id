@@ -9,7 +9,7 @@ exports.seed = async function(knex) {
   await knex('users').del()
   await knex('users').insert([
     {username: 'ardiakz',
-      password: 'sampl3pa55',
+      password: '121212',
       email: 'ardia@mail.com',
       full_name: 'Ardia Aprireo',
       phone_num: '08123456789',
