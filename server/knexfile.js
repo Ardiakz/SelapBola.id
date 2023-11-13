@@ -1,18 +1,18 @@
-const dotenv = require('dotenv')
-
-dotenv.config({path: './.env'})
-const {db_host, db_port, db_user, db_password, db_database} = process.env
+// const dotenv = require('dotenv')
+require('dotenv').config()
+// dotenv.config({path: './.env'})
+// const {db_host, db_port, db_user, db_password, db_database} = process.env
 
 module.exports = {
 
   development: {
     client: 'pg',
     connection: {
-      host : db_host,
-      port : db_port,
-      user : db_user,
-      password : db_password,
-      database : db_database
+      host : process.env.db_host,
+      port : process.env.db_port,
+      user : process.env.db_user,
+      password : process.env.db_password,
+      database : process.env.db_database
     },
     seeds: {
       directory: './seeds'

@@ -1,7 +1,7 @@
 const fs = require('fs')
 const bcrypt = require('bcrypt')
 const path = require('path')
-const knex = require('../knexfile')
+const knex = require('../models/db')
 const dbPath = path.join(__dirname, 'path')
 
 const userController = {
@@ -35,17 +35,19 @@ const userController = {
     login: async(req, res) => {
         try {
             const {username, password} = req.body
+            // console.log(req.body)
 
             const usersData = await loadUsers()
-
+            // console.log(usersData, "testing")
             const user = usersData.find((user) => user.username === username && user.password === password)
-
+            console.log(user)
             if(user) {
                 return res.status(200).json({message: 'Logged in'})
             } else {
                 return res.status(401).json({message: 'Invalid username or password!'})
             }
         } catch (error) {
+            // console.log(error, "masih error 54")
             return res.status(500).json({message: 'Login failed'})
         }
     
@@ -53,9 +55,12 @@ const userController = {
 
 async function loadUsers() {
     try {
+        // console.log("ardi ganteng semangat dong")
         const data = await knex('users').select('*')
+        // console.log(data, "iki data") 
         return data
     } catch (error) {
+        console.log(error, "masih error 67")
         return [];
     }
 }

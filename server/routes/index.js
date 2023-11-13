@@ -1,9 +1,10 @@
+const routes = require('express').Router()
 const userRoutes = require("./userRoutes")
-const productRoutes = require("./productRoutes")
-const orderRoutes = require("./orderRoutes")
+// const productRoutes = require("./productRoutes")
+// const orderRoutes = require("./orderRoutes")
+const homeController = require("../controllers/homeController")
 
-module.exports = {
-    userRoutes,
-    productRoutes,
-    orderRoutes
-}
+routes.get("/", homeController.renderHome)
+routes.use("/users", userRoutes)
+
+module.exports = routes
