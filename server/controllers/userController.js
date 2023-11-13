@@ -39,15 +39,15 @@ const userController = {
     },
     login: async(req, res) => {
         try {
-            const {username, password} = req.body
+            const selectData = {username, password, email} = req.body
             // console.log(req.body)
 
-            const usersData = await loadUsers()
+            const usersData = await loadUsers(selectData)
             // console.log(usersData, "testing")
-            const user = usersData.find((user) => user.username === username && user.password === password)
+            const user = usersData.find((user) => user.username === username || user.email === email && user.password === password)
             // console.log(user)
             if(user) {
-                return res.status(200).json({message: 'Logged in'})
+                return res.redirect("/")
             } else {
                 return res.status(401).json({message: 'Invalid username or password!'})
             }
@@ -64,8 +64,6 @@ const userController = {
         res.render('login')
     }
 }
-
-    
 
 async function loadUsers(usersData) {
     try {
